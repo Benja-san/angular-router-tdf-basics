@@ -1,0 +1,57 @@
+<h1>Welcome Dude !</h1>
+
+<form (ngSubmit)="onSubmit()" #formRef="ngForm">
+  <div>
+    Is form correct : {{ formRef.submitted ? formRef.submitted : false }}
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <br />
+    <input
+      required
+      placeholder="you@email.com"
+      name="email"
+      id="email"
+      type="email"
+      [(ngModel)]="user.email"
+      #emailRef="ngModel"
+      email
+    />
+    @if(emailRef.errors) { @if(emailRef.errors['required']) {
+    <p [ngStyle]="{ color: 'red' }">Veuillez renseigner votre email</p>
+    } @if(emailRef.errors['email']){
+    <p [ngStyle]="{ color: 'red' }">Veuillez renseigner un email valide</p>
+    } }
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <br />
+    <input
+      required
+      placeholder="password"
+      name="password"
+      id="password"
+      type="password"
+      [(ngModel)]="user.password"
+      #passwordRef="ngModel"
+      pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
+    />
+    @if(passwordRef.errors) { @if(passwordRef.errors['required']) {
+    <p [ngStyle]="{ color: 'red' }">Veuillez renseigner votre password</p>
+    } @if(passwordRef.errors['pattern']){
+    <p [ngStyle]="{ color: 'red' }">Veuillez renseigner un password valide</p>
+    } }
+    <br />
+    <small
+      >Password must be 8 charcters min One caps, one digit and one special
+      character</small
+    >
+  </div>
+  <br />
+  <button [disabled]="formRef.invalid" type="submit">Se connecter</button>
+</form>
+
+<div>
+  <p>email : {{ user.email }}</p>
+  <p>password : {{ user.password }}</p>
+</div>
