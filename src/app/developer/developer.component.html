@@ -1,0 +1,33 @@
+<h1>Developer's Page</h1>
+
+<section>
+  <h2>{{ carlos.name }} {{ carlos.lastname }}</h2>
+  <h3>Age : {{ carlos.age }}, Gender : {{ carlos.gender }}</h3>
+  <h4>Carlos skills</h4>
+  @if(carlos.skills.length > 0) {
+  <p>{{ carlos.bio }}</p>
+  <ul>
+    @for(item of carlos.skills; track item.id) {
+    <app-skill [skill]="item"></app-skill>
+    }
+  </ul>
+  }
+</section>
+
+<section>
+  <app-magical-button
+    [color]="colorB1"
+    [content]="contentB1"
+    (eventEmitter)="buttonClickReceipt($event)"
+  ></app-magical-button>
+  <app-magical-button
+    [color]="colorB2"
+    [content]="contentB2"
+    (eventEmitter)="buttonClickReceipt($event)"
+  ></app-magical-button>
+  <app-magical-button
+    [color]="colorB3"
+    [content]="contentB3"
+    (eventEmitter)="buttonClickReceipt($event)"
+  ></app-magical-button>
+</section>
